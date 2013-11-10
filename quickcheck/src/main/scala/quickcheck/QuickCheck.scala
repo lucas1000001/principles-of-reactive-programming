@@ -45,6 +45,13 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
     }
   }
 
+  property("del min from second heap") = forAll { (h1:H, h2:H) =>
+    val (hasMin, other) = if (findMin(h1) < findMin(h2)) (h1, h2) else (h2, h1)
+    val expected = meld(deleteMin(hasMin), other)
+    val actual = deleteMin(meld(hasMin, other))
+    findMin(expected) == findMin(actual)
+  }
+
   @tailrec private def asSeq(h:H, sorted:List[Int]):List[Int] = {
     h match {
       case h if h == empty => sorted
