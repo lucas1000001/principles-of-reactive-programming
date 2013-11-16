@@ -1,6 +1,7 @@
 package simulations
 
 import common._
+import scala.annotation.tailrec
 
 class Wire {
   private var sigVal = false
@@ -67,7 +68,7 @@ abstract class CircuitSimulator extends Simulator {
     a1 addAction orAction
     a2 addAction orAction
   }
-  
+
   def orGate2(a1: Wire, a2: Wire, output: Wire) {
     val notA1, notA2, andNotA1NotA2 = new Wire
     inverter(a1, notA1)
@@ -76,8 +77,25 @@ abstract class CircuitSimulator extends Simulator {
     inverter(andNotA1NotA2, output)
   }
 
-  def demux(in: Wire, c: List[Wire], out: List[Wire]) {
-    ???
+  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
+    cs match {
+      case Nil => andGate(in, in, out(0))
+      case c :: cs => {
+        val identityResult = new Wire
+        andGate(in, c, identityResult)
+        
+        val inverseResult = {
+          val res, notC = new Wire
+          inverter(c, notC)
+          andGate(in, notC, res)
+          res
+        }
+
+        val half = out.length / 2
+        demux(identityResult, cs, out.drop(half))
+        demux(inverseResult, cs, out.take(half))
+      }
+    }
   }
 
 }
