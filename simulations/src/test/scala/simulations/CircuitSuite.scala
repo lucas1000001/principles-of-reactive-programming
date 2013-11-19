@@ -84,52 +84,25 @@ class CircuitSuite extends CircuitSimulator with FunSuite {
     run
     assert(out.getSignal === true)
   }
-//
-//  test("demux single control") {
-//    val in, c, out1, out2 = new Wire
-//    demux(in, List(c), List(out1, out2))
-//
-//    def t(inb:Boolean, c1b:Boolean, o1b:Boolean, o2b:Boolean) {
-//      in.setSignal(inb)
-//      c.setSignal(c1b)
-//      run
-//      assert(out1.getSignal === o1b)
-//      assert(out2.getSignal === o2b)
-//    }
-//
-//    //  I      C      O1     O2
-//    t(false, false, false, false)
-//    t(false, true,  false, false)
-//    t(true,  false, true,  false)
-//    t(true,  true,  false, true)
-//  }
-//
-//  test("demux double control") {
-//    val in, c1, c2, o1, o2, o3, o4 = new Wire
-//    demux(in, List(c1, c2), List(o1, o2, o3, o4))
-//
-//    def t(inb:Boolean, c1b:Boolean, c2b:Boolean, o1b:Boolean, o2b:Boolean, o3b:Boolean, o4b:Boolean) {
-//      in.setSignal(inb)
-//      c1.setSignal(c1b)
-//      c2.setSignal(c2b)
-//      run
-//      assert(o1.getSignal === o1b)
-//      assert(o2.getSignal === o2b)
-//      assert(o3.getSignal === o3b)
-//      assert(o4.getSignal === o4b)
-//    }
-//
-//    //  I      C1     C2     O1     O2     O3     O4
-//    t(false, false, false, false, false, false, false)
-//    t(false, false, true,  false, false, false, false)
-//    t(false, true,  false, false, false, false, false)
-//    t(false, true,  true,  false, false, false, false)
-//    t(true,  false, false, true,  false, false, false)
-//    t(true,  false, true,  false, true,  false, false)
-//    t(true,  true,  false, false, false, true,  false)
-//    t(true,  true,  true,  false, false, false, true)
-//
-//  }
+
+  test("demux single control") {
+    val in, c, out1, out2 = new Wire
+    demux(in, List(c), List(out2, out1))
+
+    def t(inb:Boolean, c1b:Boolean, o1b:Boolean, o2b:Boolean) {
+      in.setSignal(inb)
+      c.setSignal(c1b)
+      run
+      assert(out1.getSignal === o1b)
+      assert(out2.getSignal === o2b)
+    }
+
+    //  I      C      O1     O2
+    t(false, false, false, false)
+    t(false, true,  false, false)
+    t(true,  false, true,  false)
+    t(true,  true,  false, true)
+  }
 
   test("demux with 2 controls test") {
     val in, c0, c1, out1, out2,  out3, out4  = new Wire

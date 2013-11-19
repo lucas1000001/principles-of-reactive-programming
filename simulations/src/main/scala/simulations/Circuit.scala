@@ -85,30 +85,6 @@ abstract class CircuitSimulator extends Simulator {
     in addAction passThroughAction
   }
 
-//  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
-//    def demuxHelper(in: Wire, cs: List[Wire], out: List[Wire]) {
-//      cs match {
-//        case Nil => passThroughGate(in, out(0))
-//        case c :: cs => {
-//          val identityResult = new Wire
-//          andGate(in, c, identityResult)
-//
-//          val inverseResult = {
-//            val res, notC = new Wire
-//            inverter(c, notC)
-//            andGate(in, notC, res)
-//            res
-//          }
-//
-//          val half = out.length / 2
-//          demux(identityResult, cs, out.drop(half))
-//          demux(inverseResult, cs, out.take(half))
-//        }
-//      }
-//    }
-//    demuxHelper(in, cs.reverse, out)
-//  }
-
   def perms(c:List[Wire]) = {
     val perms = (0 until pow(2,c.length).toInt)
     val binaryPerms = perms.map(Integer.toBinaryString(_))
@@ -140,6 +116,7 @@ abstract class CircuitSimulator extends Simulator {
 
   def andMany(wires:Seq[Wire], out:Wire):Unit = {
     wires match {
+      case x :: Nil => passThroughGate(x, out)
       case x :: y :: Nil => andGate(x, y, out)
       case x :: y :: xs => {
         val w = new Wire
@@ -149,7 +126,7 @@ abstract class CircuitSimulator extends Simulator {
     }
   }
 
-  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
+  def wireUpDemux(in: Wire, cs: List[Wire], out: List[Wire]) {
     val ps = perms(cs)
     val decode = decoder(ps, cs)
     decode.zip(out.reverse).map { case (dec, out) =>
@@ -159,6 +136,14 @@ abstract class CircuitSimulator extends Simulator {
         w
       }
       andMany(ins.toList, out)
+    }  
+  }
+  
+  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
+    if (cs.isEmpty) {
+      passThroughGate(in, out(0))
+    } else {
+      wireUpDemux(in, cs, out)
     }
   }
 
