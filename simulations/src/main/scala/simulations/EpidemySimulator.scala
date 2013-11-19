@@ -15,8 +15,8 @@ class EpidemySimulator extends Simulator {
 
   protected[simulations] object SimConfig {
     val population: Int = 300
-    val roomRows: Int = 8
-    val roomColumns: Int = 8
+    var roomRows: Int = 8
+    var roomColumns: Int = 8
 
     // to complete: additional parameters of simulation
     val prevalenceRate = 0.01
@@ -96,7 +96,7 @@ class EpidemySimulator extends Simulator {
     
     def hasInfected(coord:(Int, Int)) = room(coord).foldLeft(false) { (anyInfected, person) => anyInfected || person.infected }
 
-    def isSafe(coord:(Int, Int)) = room(coord).forall { p => !p.dead || !p.sick }
+    def isSafe(coord:(Int, Int)) = room(coord).forall { p => !p.dead && !p.sick }
 
   }
 
@@ -113,6 +113,7 @@ class EpidemySimulator extends Simulator {
     // demonstrates random number generation
     var row: Int = randomBelow(roomRows)
     var col: Int = randomBelow(roomColumns)
+    rooms.join((row, col), this)
 
     //schedule a move on start
     move()

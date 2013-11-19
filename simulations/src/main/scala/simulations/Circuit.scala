@@ -2,6 +2,7 @@ package simulations
 
 import common._
 import scala.annotation.tailrec
+import math.pow
 
 class Wire {
   private var sigVal = false
@@ -77,24 +78,87 @@ abstract class CircuitSimulator extends Simulator {
     inverter(andNotA1NotA2, output)
   }
 
-  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
-    cs match {
-      case Nil => andGate(in, in, out(0))
-      case c :: cs => {
-        val identityResult = new Wire
-        andGate(in, c, identityResult)
-        
-        val inverseResult = {
-          val res, notC = new Wire
-          inverter(c, notC)
-          andGate(in, notC, res)
-          res
-        }
+  def passThroughGate(in:Wire, out:Wire) {
+    def passThroughAction() {
+      out.setSignal(in.getSignal)
+    }
+    in addAction passThroughAction
+  }
 
-        val half = out.length / 2
-        demux(identityResult, cs, out.drop(half))
-        demux(inverseResult, cs, out.take(half))
+//  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
+//    def demuxHelper(in: Wire, cs: List[Wire], out: List[Wire]) {
+//      cs match {
+//        case Nil => passThroughGate(in, out(0))
+//        case c :: cs => {
+//          val identityResult = new Wire
+//          andGate(in, c, identityResult)
+//
+//          val inverseResult = {
+//            val res, notC = new Wire
+//            inverter(c, notC)
+//            andGate(in, notC, res)
+//            res
+//          }
+//
+//          val half = out.length / 2
+//          demux(identityResult, cs, out.drop(half))
+//          demux(inverseResult, cs, out.take(half))
+//        }
+//      }
+//    }
+//    demuxHelper(in, cs.reverse, out)
+//  }
+
+  def perms(c:List[Wire]) = {
+    val perms = (0 until pow(2,c.length).toInt)
+    val binaryPerms = perms.map(Integer.toBinaryString(_))
+    val max = binaryPerms.last.length
+    val paddedPerms = binaryPerms.map(_.reverse.padTo(max, '0').reverse)
+    paddedPerms.map { str =>
+      str.map {
+        case '0' => false
+        case '1' => true
       }
+    }
+  }
+
+  def invert(c:Wire) = {
+    val i = new Wire
+    inverter(c, i)
+    i
+  }
+
+  def decoder(perms:Seq[Seq[Boolean]], c:List[Wire]) = {
+    val decoders = for { perm <- perms } yield { perm.zip(c) }
+    decoders.map { decoder =>
+      decoder.map {
+        case(true, w) => w
+        case(false, w) => invert(w)
+      }
+    }
+  }
+
+  def andMany(wires:Seq[Wire], out:Wire):Unit = {
+    wires match {
+      case x :: y :: Nil => andGate(x, y, out)
+      case x :: y :: xs => {
+        val w = new Wire
+        andGate(x, y, w)
+        andMany(w :: xs, out)
+      }
+    }
+  }
+
+  def demux(in: Wire, cs: List[Wire], out: List[Wire]) {
+    val ps = perms(cs)
+    val decode = decoder(ps, cs)
+    decode.zip(out.reverse).map { case (dec, out) =>
+      val ins = dec.map { c =>
+        val w = new Wire
+        andGate(in, c, w)
+        w
+      }
+      andMany(ins.toList, out)
     }
   }
 
