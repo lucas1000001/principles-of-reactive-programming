@@ -1,7 +1,5 @@
 package simulations
 
-import common._
-import scala.annotation.tailrec
 import math.pow
 
 class Wire {
