@@ -13,9 +13,10 @@ import org.scalatest._
 import NodeScala._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
+import org.scalatest.matchers.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class NodeScalaSuite extends FunSuite {
+class NodeScalaSuite extends FunSuite with ShouldMatchers {
 
   test("A Future should always be created") {
     val always = Future.always(517)
@@ -32,6 +33,31 @@ class NodeScalaSuite extends FunSuite {
     } catch {
       case t: TimeoutException => // ok!
     }
+  }
+
+  test("A Future should map all") {
+    val fs = List(Future.always(1), Future.always(2), Future.always(3))
+    val actual = Future.all(fs)
+    assert(Await.result(actual, 0 nanos) == List(1, 2, 3))
+  }
+
+  test("A Future should return any") {
+    val fs = Future.any(List(Future.always(1), Future.always(2), Future.always(3)))
+    Await.result(fs, 0 nanos) should be(1)
+  }
+
+  test("A Future should be able to delay") {
+    import java.util.Date
+    val start = new Date()
+    println("Starting")
+    val f = Future.delay(2 seconds)
+    val then = new Date()
+    println("Awaiting ...")
+    Await.result(f, 2 seconds)
+    println("End")
+    val end = new Date()
+    assert ((then.getTime - start.getTime) < 500)
+    assert ((end.getTime - start.getTime) >= 2000)
   }
 
   test("CancellationTokenSource should allow stopping the computation") {
