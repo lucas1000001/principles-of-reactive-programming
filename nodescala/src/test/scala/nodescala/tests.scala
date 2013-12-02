@@ -13,7 +13,7 @@ import org.scalatest._
 import NodeScala._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
 @RunWith(classOf[JUnitRunner])
 class NodeScalaSuite extends FunSuite with ShouldMatchers {
@@ -38,12 +38,30 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
   test("A Future should map all") {
     val fs = List(Future.always(1), Future.always(2), Future.always(3))
     val actual = Future.all(fs)
-    assert(Await.result(actual, 0 nanos) == List(1, 2, 3))
+    assert(Await.result(actual, 1 second) == List(1, 2, 3))
   }
 
   test("A Future should return any") {
     val fs = Future.any(List(Future.always(1), Future.always(2), Future.always(3)))
-    Await.result(fs, 0 nanos) should be(1)
+    assert (List(1,2,3).contains(Await.result(fs, 1 second)))
+  }
+
+  test("A Future#now should throw if not ready") {
+    val f = Future.delay(2 seconds)
+    try {
+      f.now
+      fail("Expected exception")
+    } catch {
+      case e:NoSuchElementException => {
+        //pass
+      }
+    }
+  }
+
+  test("A Future#now should pass now overtime") {
+    val f = Future.delay(2 seconds)
+    Await.result(f, 3 seconds)
+    f.now
   }
 
   test("A Future should be able to delay") {
@@ -58,6 +76,38 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
     val end = new Date()
     assert ((then.getTime - start.getTime) < 500)
     assert ((end.getTime - start.getTime) >= 2000)
+  }
+
+  test("A Future should continue with") {
+    val f = Future.always(27)
+    val s  = f.continueWith { fs =>
+      Await.result(fs, 1 second).toString
+    }
+    Await.result(s, 1 second) should be("27")
+  }
+
+  test("A Future should handle failure for continue with") {
+    val f = Future.failed(new IllegalArgumentException)
+    val s = f.continueWith { fs =>
+      Await.result(fs, 1 second)
+    }
+    try {
+      Await.result(s, 1 second)
+      fail("Expected exception")
+    } catch {
+      case e:IllegalArgumentException => {
+        //pass
+      }
+    }
+  }
+
+  test("A Future should continue") {
+    val f = Future.always(27)
+    val res = f.continue {
+      case Success(v) => v * 2
+      case Failure(ex) => throw ex
+    }
+    Await.result(res, 1 second) should be(54)
   }
 
   test("CancellationTokenSource should allow stopping the computation") {
@@ -84,6 +134,7 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
       response += s
     }
     def close() {
+      println(s"Closed $loaded with $response")
       loaded.success(response)
     }
   }
@@ -165,6 +216,7 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
 
     def test(req: Request) {
       val webpage = dummy.emit("/testDir", req)
+      println(s"Awaiting ${webpage.loaded}")
       val content = Await.result(webpage.loaded.future, 1 second)
       val expected = (for (kv <- req.iterator) yield (kv + "\n").toString).mkString
       assert(content == expected, s"'$content' vs. '$expected'")
