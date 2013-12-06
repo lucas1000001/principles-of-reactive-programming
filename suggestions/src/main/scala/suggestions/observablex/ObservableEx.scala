@@ -8,6 +8,7 @@ import scala.util.Failure
 import java.lang.Throwable
 import rx.lang.scala.Observable
 import rx.lang.scala.Scheduler
+import rx.lang.scala.subjects.ReplaySubject
 
 object ObservableEx {
 
@@ -17,6 +18,16 @@ object ObservableEx {
    * @param f future whose values end up in the resulting observable
    * @return an observable completed after producing the value of the future, or with an exception
    */
-  def apply[T](f: Future[T])(implicit execContext: ExecutionContext): Observable[T] = ???
+  def apply[T](f: Future[T])(implicit execContext: ExecutionContext): Observable[T] = {
+    val channel = ReplaySubject[T]()
+    f.onComplete {
+      case Success(s) => {
+        channel.onNext(s)
+        channel.onCompleted()
+      }
+      case Failure(f) => channel.onError(f)
+    }
+    channel
+  }
 
 }
