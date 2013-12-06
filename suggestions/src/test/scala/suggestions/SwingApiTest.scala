@@ -14,9 +14,10 @@ import gui._
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
+import org.scalatest.matchers.ShouldMatchers
 
 @RunWith(classOf[JUnitRunner])
-class SwingApiTest extends FunSuite {
+class SwingApiTest extends FunSuite with ShouldMatchers {
 
   object swingApi extends SwingApi {
     class ValueChanged(val textField: TextField) extends Event
@@ -87,4 +88,73 @@ class SwingApiTest extends FunSuite {
 
     assert(observed == Seq("T", "Tu", "Tur", "Turi", "Turin", "Turing"), observed)
   }
+
+
+  test("SwingApi should be able to unsubscribe from text events") {
+    val textField = new swingApi.TextField
+    val values = textField.textValues
+
+    val observed = mutable.Buffer[String]()
+    val sub = values subscribe {
+      observed += _
+    }
+
+    // write some text now
+    textField.text = "T"
+    textField.text = "Tu"
+    textField.text = "Tur"
+
+    sub.unsubscribe()
+
+    textField.text = "Turi"
+    textField.text = "Turin"
+    textField.text = "Turing"
+
+    observed should be(Seq("T", "Tu", "Tur"))
+  }
+
+
+  test("SwingApi should emit button click events to the observable") {
+    val button = new swingApi.Button
+    val values = button.clicks
+
+    val observed = mutable.Buffer[Button]()
+    val sub = values subscribe {
+      observed += _
+    }
+
+    button.click()
+    button.click()
+    button.click()
+    button.click()
+    button.click()
+
+    assert(observed == Seq(button, button, button, button, button))
+
+  }
+
+
+  test("SwingApi should be able to unsubscribe from button events") {
+    val button = new swingApi.Button
+    val values = button.clicks
+
+    val observed = mutable.Buffer[Button]()
+    val sub = values subscribe {
+      observed += _
+    }
+
+    button.click()
+    button.click()
+
+    sub.unsubscribe()
+
+    button.click()
+    button.click()
+    button.click()
+
+    assert(observed == Seq(button, button))
+
+  }
+
+
 }
