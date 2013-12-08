@@ -33,11 +33,9 @@ trait NodeScala {
    */
   @tailrec private def respond(exchange: Exchange, token: CancellationToken, response: Response): Unit = {
     if (token.isCancelled || !response.hasNext) {
-      println("Closing")
       exchange.close()
     } else {
       val resp = response.next()
-      println("Writing")
       exchange.write(resp)
       respond(exchange, token, response)
     }
@@ -64,7 +62,6 @@ trait NodeScala {
             val resp = handler(req)
             respond(exch, ct, resp)
           }
-          Await.result(req, 1 milli)
         }
       }
     }

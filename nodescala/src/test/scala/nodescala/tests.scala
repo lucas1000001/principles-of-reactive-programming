@@ -67,12 +67,9 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
   test("A Future should be able to delay") {
     import java.util.Date
     val start = new Date()
-    println("Starting")
     val f = Future.delay(2 seconds)
     val then = new Date()
-    println("Awaiting ...")
-    Await.result(f, 2 seconds)
-    println("End")
+    Await.result(f, 3 seconds)
     val end = new Date()
     assert ((then.getTime - start.getTime) < 500)
     assert ((end.getTime - start.getTime) >= 2000)
@@ -134,7 +131,6 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
       response += s
     }
     def close() {
-      println(s"Closed $loaded with $response")
       loaded.success(response)
     }
   }
@@ -216,8 +212,7 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
 
     def test(req: Request) {
       val webpage = dummy.emit("/testDir", req)
-      println(s"Awaiting ${webpage.loaded}")
-      val content = Await.result(webpage.loaded.future, 1  second)
+      val content = Await.result(webpage.loaded.future, 1 second)
       val expected = (for (kv <- req.iterator) yield (kv + "\n").toString).mkString
       assert(content == expected, s"'$content' vs. '$expected'")
     }
