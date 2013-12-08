@@ -217,7 +217,7 @@ class NodeScalaSuite extends FunSuite with ShouldMatchers {
     def test(req: Request) {
       val webpage = dummy.emit("/testDir", req)
       println(s"Awaiting ${webpage.loaded}")
-      val content = Await.result(webpage.loaded.future, 1 second)
+      val content = Await.result(webpage.loaded.future, 1  second)
       val expected = (for (kv <- req.iterator) yield (kv + "\n").toString).mkString
       assert(content == expected, s"'$content' vs. '$expected'")
     }
