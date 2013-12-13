@@ -12,7 +12,7 @@ import rx.subscriptions.CompositeSubscription
 import rx.lang.scala.Observable
 import observablex._
 import search._
-import rx.lang.scala.Notification.{OnError, OnNext}
+import rx.lang.scala.Notification.{OnCompleted, OnError, OnNext}
 import java.util.Date
 
 trait WikipediaApi {
@@ -50,10 +50,7 @@ trait WikipediaApi {
      *
      * E.g. `1, 2, 3, !Exception!` should become `Success(1), Success(2), Success(3), Failure(Exception), !TerminateStream!`
      */
-    def recovered: Observable[Try[T]] = obs.materialize.map {
-      case OnNext(v) => Success(v)
-      case OnError(v) => Failure(v)
-    }
+    def recovered: Observable[Try[T]] = obs.map(Success(_)).onErrorReturn(Failure(_))
 
     /** Emits the events from the `obs` observable, until `totalSec` seconds have elapsed.
      *
@@ -92,7 +89,7 @@ trait WikipediaApi {
      *
      * Observable(Success(1), Succeess(1), Succeess(1), Succeess(2), Succeess(2), Succeess(2), Succeess(3), Succeess(3), Succeess(3))
      */
-    def concatRecovered[S](requestMethod: T => Observable[S]): Observable[Try[S]] = obs.flatMap(requestMethod).recovered
+    def concatRecovered[S](requestMethod: T => Observable[S]): Observable[Try[S]] = obs.flatMap(requestMethod(_).recovered)
   }
 
 }

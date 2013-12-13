@@ -5,6 +5,7 @@ package actorbintree
 
 import akka.actor._
 import scala.collection.immutable.Queue
+import scala.concurrent.Future
 
 object BinaryTreeSet {
 
@@ -66,14 +67,33 @@ class BinaryTreeSet extends Actor {
 
   // optional
   /** Accepts `Operation` and `GC` messages. */
-  val normal: Receive = { case _ => ??? }
+  val normal: Receive = {
+    case GC => {
+      println("GC-ing")
+      val newRoot = createRoot
+      context.become(garbageCollecting(newRoot))
+      root ! CopyTo(newRoot)
+    }
+    case op:Operation => root ! op
+  }
 
   // optional
   /** Handles messages while garbage collection is performed.
     * `newRoot` is the root of the new binary tree where we want to copy
     * all non-removed elements into.
     */
-  def garbageCollecting(newRoot: ActorRef): Receive = ???
+  def garbageCollecting(newRoot: ActorRef): Receive = {
+    case CopyFinished => {
+      val oldRoot = root
+      root = newRoot
+      pendingQueue.foreach(root ! _)
+      pendingQueue = Queue.empty[Operation]
+      context.become(normal)
+      oldRoot ! PoisonPill
+      println("GC done")
+    }
+    case op:Operation => pendingQueue = pendingQueue.enqueue(op)
+  }
 
 }
 
@@ -99,14 +119,106 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
   // optional
   def receive = normal
 
+  def contains(caller:ActorRef, id:Int, e:Int) {
+
+    def delegate(pos:Position) {
+      if (subtrees.contains(pos)) {
+        subtrees(pos) ! Contains(caller, id, e)
+      } else {
+        caller ! ContainsResult(id, false)
+      }
+    }
+
+    e match {
+      case _ if (e == elem) => caller ! ContainsResult(id, !removed)
+      case _ if (e < elem) => delegate(Left)
+      case _ if (e > elem) => delegate(Right)
+    }
+
+  }
+
+  def insert(caller:ActorRef, id:Int, e:Int) {
+
+    def push(pos:Position) {
+      if (subtrees.contains(pos)) {
+        subtrees(pos) ! Insert(caller, id, e)
+      } else {
+        val child = context.actorOf(BinaryTreeNode.props(e, initiallyRemoved = false))
+        subtrees = subtrees + (pos -> child)
+        caller ! OperationFinished(id)
+      }
+    }
+
+    e match {
+      case _ if (e == elem) => {
+        removed = false
+        caller ! OperationFinished(id)
+      }
+      case _ if (e < elem) => push(Left)
+      case _ if (e > elem) => push(Right)
+    }
+
+  }
+
+  def remove(caller:ActorRef, id:Int, e:Int) {
+
+    def delegate(pos:Position) {
+      if (subtrees.contains(pos)) {
+        subtrees(pos) ! Remove(caller, id, e)
+      } else {
+        caller ! OperationFinished(id)
+      }
+    }
+
+    e match {
+      case _ if (e == elem) => {
+        removed = true
+        caller ! OperationFinished(id)
+      }
+      case _ if (e < elem) => delegate(Left)
+      case _ if (e > elem) => delegate(Right)
+    }
+
+  }
+
+  def copyTo(node:ActorRef) {
+    val expected = if (removed) {
+      subtrees.values.toList
+    } else {
+      node :: subtrees.values.toList
+    }
+    context.become(copying(sender, expected.toSet.size))
+    if (!removed) {
+      node ! Insert(self, elem, elem)
+    }
+    subtrees.values.foreach(_ ! CopyTo(node))
+  }
+
   // optional
   /** Handles `Operation` messages and `CopyTo` requests. */
-  val normal: Receive = { case _ => ??? }
+  val normal: Receive = {
+    case Contains(req, id, e) => contains(req, id, e)
+    case Insert(req, id, e) => insert(req, id, e)
+    case Remove(req, id, e) => remove(req, id, e)
+    case CopyTo(node) => copyTo(node)
+  }
+
 
   // optional
   /** `expected` is the set of ActorRefs whose replies we are waiting for,
     * `insertConfirmed` tracks whether the copy of this node to the new tree has been confirmed.
     */
-  def copying(expected: Set[ActorRef], insertConfirmed: Boolean): Receive = ???
+  def copying(replyTo:ActorRef, countDownLatch:Int): Receive = {
+    case OperationFinished(_) | CopyFinished => {
+      val dec = countDownLatch - 1
+      if (dec == 0) {
+        context.become(normal)
+        replyTo ! CopyFinished
+        self ! PoisonPill
+      } else {
+        context.become(copying(replyTo, dec))
+      }
+    }
+  }
 
 }
