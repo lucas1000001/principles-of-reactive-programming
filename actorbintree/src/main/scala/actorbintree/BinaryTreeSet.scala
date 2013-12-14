@@ -69,7 +69,6 @@ class BinaryTreeSet extends Actor {
   /** Accepts `Operation` and `GC` messages. */
   val normal: Receive = {
     case GC => {
-      println("GC-ing")
       val newRoot = createRoot
       context.become(garbageCollecting(newRoot))
       root ! CopyTo(newRoot)
@@ -90,7 +89,6 @@ class BinaryTreeSet extends Actor {
       pendingQueue = Queue.empty[Operation]
       context.become(normal)
       oldRoot ! PoisonPill
-      println("GC done")
     }
     case op:Operation => pendingQueue = pendingQueue.enqueue(op)
   }
@@ -119,87 +117,104 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
   // optional
   def receive = normal
 
-  def contains(caller:ActorRef, id:Int, e:Int) {
 
-    def delegate(pos:Position) {
-      if (subtrees.contains(pos)) {
-        subtrees(pos) ! Contains(caller, id, e)
-      } else {
-        caller ! ContainsResult(id, false)
-      }
-    }
 
-    e match {
-      case _ if (e == elem) => caller ! ContainsResult(id, !removed)
-      case _ if (e < elem) => delegate(Left)
-      case _ if (e > elem) => delegate(Right)
-    }
+  def contains = {
+
+    val onEqual = { (op:Operation) => op.requester ! ContainsResult(op.id, !removed) }
+
+    val onDelegateToAbsent = { (op:Operation, pos:Position) => op.requester ! ContainsResult(op.id, false) }
+
+    dispatch(onEqual, onDelegateToAbsent)_
 
   }
 
-  def insert(caller:ActorRef, id:Int, e:Int) {
 
-    def push(pos:Position) {
-      if (subtrees.contains(pos)) {
-        subtrees(pos) ! Insert(caller, id, e)
-      } else {
-        val child = context.actorOf(BinaryTreeNode.props(e, initiallyRemoved = false))
-        subtrees = subtrees + (pos -> child)
-        caller ! OperationFinished(id)
-      }
+
+  def insert = {
+
+    val onEqual = { op:Operation =>
+      removed = false
+      op.requester ! OperationFinished(op.id)
     }
 
-    e match {
-      case _ if (e == elem) => {
-        removed = false
-        caller ! OperationFinished(id)
-      }
-      case _ if (e < elem) => push(Left)
-      case _ if (e > elem) => push(Right)
+    val onDelegateToAbsent = { (op:Operation, pos:Position) =>
+      val child = context.actorOf(BinaryTreeNode.props(op.elem, initiallyRemoved = false))
+      subtrees = subtrees + (pos -> child)
+      op.requester ! OperationFinished(op.id)
     }
+
+    dispatch(onEqual, onDelegateToAbsent)_
 
   }
 
-  def remove(caller:ActorRef, id:Int, e:Int) {
 
-    def delegate(pos:Position) {
-      if (subtrees.contains(pos)) {
-        subtrees(pos) ! Remove(caller, id, e)
-      } else {
-        caller ! OperationFinished(id)
-      }
+
+  def remove = {
+
+    val onEqual = { op:Operation =>
+      removed = true
+      op.requester ! OperationFinished(op.id)
     }
 
-    e match {
-      case _ if (e == elem) => {
-        removed = true
-        caller ! OperationFinished(id)
-      }
-      case _ if (e < elem) => delegate(Left)
-      case _ if (e > elem) => delegate(Right)
-    }
+    val onDelegateToAbsent = { (op:Operation, pos:Position) => op.requester ! OperationFinished(op.id) }
 
+    dispatch(onEqual, onDelegateToAbsent)_
   }
 
+
+  def dispatch(onEqual: (Operation) => Unit, delegateOnAbsent: (Operation, Position) => Unit)(op:Operation) {
+
+    def delegate(op:Operation, pos:Position) {
+      if (subtrees.contains(pos)) {
+        subtrees(pos) forward op
+      } else {
+        delegateOnAbsent(op, pos)
+      }
+    }
+
+    op.elem match {
+      case e if (e == elem) => onEqual(op)
+      case e if (e < elem) => delegate(op, Left)
+      case e if (e > elem) => delegate(op, Right)
+    }
+  }
+
+
+
+
+  /**
+   * Given a target node, copies the actor subtree into that node
+   * @param node
+   */
   def copyTo(node:ActorRef) {
+
     val expected = if (removed) {
       subtrees.values.toList
     } else {
       node :: subtrees.values.toList
     }
-    context.become(copying(sender, expected.toSet.size))
-    if (!removed) {
-      node ! Insert(self, elem, elem)
+
+    context.become(copying(expected.toSet.size))
+
+    if (expected.isEmpty) {
+      sender ! CopyFinished
+    } else {
+      if (!removed) {
+        node ! Insert(self, elem, elem)
+      }
+      subtrees.values.foreach(_ ! CopyTo(node))
     }
-    subtrees.values.foreach(_ ! CopyTo(node))
+
   }
+
 
   // optional
   /** Handles `Operation` messages and `CopyTo` requests. */
   val normal: Receive = {
-    case Contains(req, id, e) => contains(req, id, e)
-    case Insert(req, id, e) => insert(req, id, e)
-    case Remove(req, id, e) => remove(req, id, e)
+    case op:Contains => contains(op)
+    case op:Insert => insert(op)
+    case op:Remove => remove(op)
     case CopyTo(node) => copyTo(node)
   }
 
@@ -208,15 +223,15 @@ class BinaryTreeNode(val elem: Int, initiallyRemoved: Boolean) extends Actor {
   /** `expected` is the set of ActorRefs whose replies we are waiting for,
     * `insertConfirmed` tracks whether the copy of this node to the new tree has been confirmed.
     */
-  def copying(replyTo:ActorRef, countDownLatch:Int): Receive = {
+  def copying(countDownLatch:Int): Receive = {
     case OperationFinished(_) | CopyFinished => {
       val dec = countDownLatch - 1
       if (dec == 0) {
         context.become(normal)
-        replyTo ! CopyFinished
+        context.parent ! CopyFinished
         self ! PoisonPill
       } else {
-        context.become(copying(replyTo, dec))
+        context.become(copying(dec))
       }
     }
   }

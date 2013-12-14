@@ -189,6 +189,18 @@ class BinaryTreeSuite(_system: ActorSystem) extends TestKit(_system) with FunSui
   }
 
 
+  test("GC on removed leaf") {
+    val node = system.actorOf(Props(classOf[BinaryTreeSet]))
+    node ! Insert(testActor, id = 0, 27)
+    expectMsg(OperationFinished(0))
+    node ! Remove(testActor, id = 7, 27)
+    expectMsg(OperationFinished(7))
+    node ! GC
+    node ! Contains(testActor, id = 6, 27)
+    expectMsg(ContainsResult(6, false))
+  }
+
+
   test("behave identically to built-in set (includes GC)") {
     val rnd = new Random()
     def randomOperations(requester: ActorRef, count: Int): Seq[Operation] = {
@@ -221,7 +233,7 @@ class BinaryTreeSuite(_system: ActorSystem) extends TestKit(_system) with FunSui
 
     val requester = TestProbe()
     val topNode = system.actorOf(Props[BinaryTreeSet])
-    val count = 10000
+    val count = 100000
 
     val ops = randomOperations(requester.ref, count)
     val expectedReplies = referenceReplies(ops)
