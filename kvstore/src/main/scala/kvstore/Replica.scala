@@ -47,6 +47,8 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
   var secondaries = Map.empty[ActorRef, ActorRef]
   // the current set of replicators
   var replicators = Set.empty[ActorRef]
+  // id of request to actor who made request
+  var senders = Map.empty[Long, ActorRef]
 
   var expectedSeq = 0
 
@@ -86,7 +88,7 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
       replicators = replicators + replicator
       secondaries = secondaries + (replica -> replicator)
       kv.zip(Stream.from(0)).foreach { case ((k, v), id) =>
-        replicator ! Replicate(k, Some(v), id)
+        replicator ! Replicate(k, Some(v), id * -1)
       }
     }
 
@@ -95,6 +97,25 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
       replicator ! PoisonPill
       secondaries = secondaries - replica
       replicators = replicators - replica
+    }
+  }
+
+  def persist(seq:Long) {
+    senders = senders + (seq -> sender)
+  }
+
+  def snapshot(sn:Snapshot) {
+    val Snapshot(key, valueOption, seq) = sn
+    if (seq < expectedSeq) {
+      sender ! SnapshotAck(key, seq)
+    }
+    if (seq == expectedSeq) {
+      valueOption match {
+        case Some(v) => kv = kv + (key -> v)
+        case None => kv = kv - key
+      }
+      expectedSeq += 1
+      persist(seq)
     }
   }
 
@@ -109,22 +130,12 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
   /* TODO Behavior for the replica role. */
   val replica: Receive = {
     case Get(key, id) => get(key, id)
-    case Snapshot(key, valueOption, seq) => {
-      if (seq < expectedSeq) {
-        sender ! SnapshotAck(key, seq)
-      }
-      else if (seq == expectedSeq) {
-        valueOption match {
-          case Some(v) => kv = kv + (key -> v)
-          case None => kv = kv - key
-        }
-        expectedSeq += 1
-        sender ! SnapshotAck(key, seq)
-      }
+    case sn:Snapshot => snapshot(sn)
+    case Persisted(key, id) => {
+      senders(id) ! SnapshotAck(key, id)
+      senders = senders - id
     }
 
   }
-
-
 
 }

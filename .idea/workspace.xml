@@ -15,7 +15,7 @@
     <file path="/Main.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386000131143" ignored="false" />
     <file path="/SwingApiTest.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347246537" ignored="false" />
     <file path="/SwingApi.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347287985" ignored="false" />
-    <file path="/Dummy.txt" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387291213860" ignored="false" />
+    <file path="/Dummy.txt" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387370795742" ignored="false" />
     <file path="/ObservableEx.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347956758" ignored="false" />
     <file path="/ObservableExTest.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386348863183" ignored="false" />
     <file path="/WikipediaApi.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386583370727" ignored="false" />
@@ -23,8 +23,8 @@
     <file path="/BinaryTreeSuite.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386951841995" ignored="false" />
     <file path="/application.conf" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386940598747" ignored="false" />
     <file path="/Dummy.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386943574348" ignored="false" />
-    <file path="/Replica.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387370691943" ignored="false" />
-    <file path="/Replicator.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387361391499" ignored="false" />
+    <file path="/Replica.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387380024784" ignored="false" />
+    <file path="/Replicator.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387377824692" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,16 +153,7 @@
       <file leaf-file-name="Replica.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="38" selection-start="3755" selection-end="3755" vertical-scroll-proportion="0.6851852">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Step2_SecondarySpec.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
+            <state line="112" column="32" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.4982699">
               <folding />
             </state>
           </provider>
@@ -171,7 +162,18 @@
       <file leaf-file-name="Replicator.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="23" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.0">
+            <state line="38" column="36" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#530#549#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Step2_SecondarySpec.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -534,7 +536,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="ScalaTest.Step2_SecondarySpec">
+  <component name="RunManager" selected="ScalaTest.Step1_PrimarySpec">
     <configuration default="false" name="BinaryTreeSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -560,56 +562,6 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="BinaryTreeSuite.behave identically to built-in set (includes GC)" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="actorbintree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="scalaCoverage" />
-      <module name="progfun-actorbintree" />
-      <setting name="path" value="actorbintree.BinaryTreeSuite" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="behave identically to built-in set (includes GC)" />
-      <setting name="testKind" value="Test name" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="BinaryTreeSuite.Multiple GC with removal" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="actorbintree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="scalaCoverage" />
-      <module name="progfun-actorbintree" />
-      <setting name="path" value="actorbintree.BinaryTreeSuite" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="Multiple GC with removal" />
-      <setting name="testKind" value="Test name" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -645,6 +597,50 @@
       <extension name="scalaCoverage" />
       <module name="progfun-kvstore" />
       <setting name="path" value="kvstore.Step2_SecondarySpec" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Step3_ReplicatorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="kvstore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="scalaCoverage" />
+      <module name="progfun-kvstore" />
+      <setting name="path" value="kvstore.Step3_ReplicatorSpec" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Step4_SecondaryPersistenceSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="kvstore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="scalaCoverage" />
+      <module name="progfun-kvstore" />
+      <setting name="path" value="kvstore.Step4_SecondaryPersistenceSpec" />
       <setting name="package" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
@@ -731,18 +727,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite" />
-      <item index="1" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite.behave identically to built-in set (includes GC)" />
-      <item index="2" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite.Multiple GC with removal" />
-      <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
-      <item index="4" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
+      <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
+      <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
+      <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step3_ReplicatorSpec" />
+      <item index="4" class="java.lang.String" itemvalue="ScalaTest.Step4_SecondaryPersistenceSpec" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
-        <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
-        <item index="2" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite" />
-        <item index="3" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite.behave identically to built-in set (includes GC)" />
-        <item index="4" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite.Multiple GC with removal" />
+        <item index="0" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
+        <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step4_SecondaryPersistenceSpec" />
+        <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step3_ReplicatorSpec" />
+        <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
+        <item index="4" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -799,7 +795,11 @@
       <created>1387275715885</created>
       <updated>1387275715885</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Step 1 and Step 2 complete">
+      <created>1387370800527</created>
+      <updated>1387370800527</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -819,8 +819,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24418604" sideWeight="0.62266225" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37733772" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24418604" sideWeight="0.66446644" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33553356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -880,7 +880,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Addition of kvstore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Step 1 and Step 2 complete" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -898,6 +898,7 @@
     <MESSAGE value="Finished ObservableEx" />
     <MESSAGE value="Draft of bintree" />
     <MESSAGE value="Addition of kvstore" />
+    <MESSAGE value="Step 1 and Step 2 complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -907,11 +908,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/suggestions/src/test/scala/suggestions/ObservableExTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="48" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/suggestions/src/main/scala/suggestions/gui/WikipediaApi.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="23" selection-start="2092" selection-end="2092" vertical-scroll-proportion="0.058757063" />
@@ -968,13 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Arbiter.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0">
@@ -989,16 +978,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step3_ReplicatorSpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="424" selection-end="424" vertical-scroll-proportion="0.12592593">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="23" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="38" column="36" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#530#549#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="38" selection-start="3755" selection-end="3755" vertical-scroll-proportion="0.6851852">
+        <state line="112" column="32" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.4982699">
           <folding />
         </state>
       </provider>
