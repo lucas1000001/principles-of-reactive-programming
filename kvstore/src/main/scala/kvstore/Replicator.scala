@@ -38,7 +38,12 @@ class Replicator(val replica: ActorRef) extends Actor {
   
   /* TODO Behavior for the Replicator. */
   def receive: Receive = {
-    case _ =>
+    case Replicate(key, value, id) => {
+      value match {
+        case Some(v) =>
+        case None =>
+      }
+    }
   }
 
 }
