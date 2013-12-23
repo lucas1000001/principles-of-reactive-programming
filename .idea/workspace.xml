@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistor.scala" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step7_FlakyPersistenceSpec.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala" afterPath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala" afterPath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala" afterPath="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala" afterPath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala" afterPath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step5_PrimaryPersistenceSpec.scala" afterPath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step5_PrimaryPersistenceSpec.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step6_NewSecondarySpec.scala" afterPath="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step6_NewSecondarySpec.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="principles-of-reactive-programming.iws" />
@@ -15,7 +22,7 @@
     <file path="/Main.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386000131143" ignored="false" />
     <file path="/SwingApiTest.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347246537" ignored="false" />
     <file path="/SwingApi.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347287985" ignored="false" />
-    <file path="/Dummy.txt" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387370795742" ignored="false" />
+    <file path="/Dummy.txt" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387789384290" ignored="false" />
     <file path="/ObservableEx.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386347956758" ignored="false" />
     <file path="/ObservableExTest.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386348863183" ignored="false" />
     <file path="/WikipediaApi.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386583370727" ignored="false" />
@@ -23,8 +30,17 @@
     <file path="/BinaryTreeSuite.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386951841995" ignored="false" />
     <file path="/application.conf" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386940598747" ignored="false" />
     <file path="/Dummy.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1386943574348" ignored="false" />
-    <file path="/Replica.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387380024784" ignored="false" />
-    <file path="/Replicator.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387377824692" ignored="false" />
+    <file path="/Replica.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387796811944" ignored="false" />
+    <file path="/Replicator.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800440521" ignored="false" />
+    <file path="/fragment.java" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387552876311" ignored="false" />
+    <file path="/Persistence.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387550512528" ignored="false" />
+    <file path="/Persistor.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800509263" ignored="false" />
+    <file path="/Step7_FlakyPersistence.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387799223385" ignored="false" />
+    <file path="/Step7_FlakyPersistenceSpec.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387799057149" ignored="false" />
+    <file path="/Step1_PrimarySpec.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800010439" ignored="false" />
+    <file path="/Step2_SecondarySpec.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800092882" ignored="false" />
+    <file path="/Step5_PrimaryPersistenceSpec.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800219126" ignored="false" />
+    <file path="/Step6_NewSecondarySpec.scala" changelist="c0cd7178-8fa7-4a60-ae2c-3f5ea2bb5ed0" time="1387800284622" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +48,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/principles-of-reactive-programming$Step6_NewSecondarySpec_case3__Primary_must_stop_replication_to_removed_replicas_and_waive_their_outstanding_acknowledgements.coverage" NAME="Step6_NewSecondarySpec.case3: Primary must stop replication to removed replicas and waive their outstanding acknowledgements Coverage Results" MODIFIED="1387796435733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>kvstore.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -39,6 +60,43 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/simulations/src/test/scala/simulations/EpidemySuite.scala" line="131" class="simulations.EpidemySuite" package="simulations">
         <option name="ENABLED" value="true" />
@@ -85,44 +143,22 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala" line="44" class="kvstore.Step1_PrimarySpec" package="kvstore">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -131,55 +167,143 @@
     <favorites_list name="principles-of-reactive-programming" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Arbiter.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Arbiter.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Step1_PrimarySpec.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="31" selection-start="1390" selection-end="1390" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Replica.scala" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="32" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.4982699">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Replicator.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="36" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#530#549#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Step2_SecondarySpec.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.3220974">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Arbiter.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Arbiter.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="14" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step1_PrimarySpec.scala" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="56" column="65" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.33702883">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step6_NewSecondarySpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step6_NewSecondarySpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="140" column="100" selection-start="4754" selection-end="4754" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step7_FlakyPersistenceSpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step7_FlakyPersistenceSpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="15" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#17#73#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ActorCell.class" pinned="false" current="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/kvstore/lib_managed/jars/com.typesafe.akka/akka-actor_2.10/akka-actor_2.10-2.2.3.jar!/akka/actor/ActorCell.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="44" column="0" selection-start="4058" selection-end="4058" vertical-scroll-proportion="-16.48">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step2_SecondarySpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="177" column="102" selection-start="6172" selection-end="6172" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step3_ReplicatorSpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step3_ReplicatorSpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="12" column="6" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step4_SecondaryPersistenceSpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step4_SecondaryPersistenceSpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="57" column="84" selection-start="1711" selection-end="1722" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Replicator.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="52" column="37" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#17#72#0" expanded="true" />
+                    <element signature="e#597#616#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Replica.scala" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="210" column="85" selection-start="5181" selection-end="5181" vertical-scroll-proportion="0.37956205">
+                  <folding>
+                    <element signature="e#2066#2082#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Persistence.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="22" column="0" selection-start="647" selection-end="647" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Step5_PrimaryPersistenceSpec.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step5_PrimaryPersistenceSpec.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="139" column="100" selection-start="5025" selection-end="5025" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Persistor.scala" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistor.scala">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="7" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#17#84#0" expanded="true" />
+                    <element signature="e#235#255#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -197,22 +321,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/simulations/src/test/scala/simulations/EpidemySuite.scala" />
-        <option value="$PROJECT_DIR$/simulations/src/test/scala/simulations/CircuitSuite.scala" />
-        <option value="$PROJECT_DIR$/simulations/src/main/scala/simulations/Circuit.scala" />
-        <option value="$PROJECT_DIR$/nodescala/src/main/scala/nodescala/Main.scala" />
-        <option value="$PROJECT_DIR$/nodescala/src/main/scala/nodescala/nodescala.scala" />
-        <option value="$PROJECT_DIR$/nodescala/src/test/scala/nodescala/tests.scala" />
-        <option value="$PROJECT_DIR$/suggestions/src/test/scala/suggestions/SwingApiTest.scala" />
-        <option value="$PROJECT_DIR$/suggestions/src/main/scala/suggestions/gui/SwingApi.scala" />
         <option value="$PROJECT_DIR$/suggestions/src/main/scala/suggestions/observablex/ObservableEx.scala" />
         <option value="$PROJECT_DIR$/suggestions/src/test/scala/suggestions/ObservableExTest.scala" />
         <option value="$PROJECT_DIR$/suggestions/src/main/scala/suggestions/gui/WikipediaApi.scala" />
         <option value="$PROJECT_DIR$/actorbintree/src/resources/application.conf" />
         <option value="$PROJECT_DIR$/actorbintree/src/test/scala/actorbintree/BinaryTreeSuite.scala" />
         <option value="$PROJECT_DIR$/actorbintree/src/main/scala/actorbintree/BinaryTreeSet.scala" />
-        <option value="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala" />
         <option value="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step7_FlakyPersistence.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step7_FlakyPersistenceSpec.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step5_PrimaryPersistenceSpec.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step6_NewSecondarySpec.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistor.scala" />
+        <option value="$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala" />
       </list>
     </option>
   </component>
@@ -248,7 +372,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,36 +388,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="kvstore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="principles-of-reactive-programming" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kvstore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scala" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kvstore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tools.scala" />
-              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -408,6 +501,32 @@
               <option name="myItemId" value="kvstore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="principles-of-reactive-programming" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kvstore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kvstore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Persistence.scala" />
               <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
@@ -475,6 +594,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -493,14 +613,14 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="FullScreen" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="Downloaded.Files.Path" value="C:\projects\GITHUB\principles-of-reactive-programming\lib" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="Downloaded.Files.Path" value="C:\projects\GITHUB\principles-of-reactive-programming\lib" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -537,35 +657,7 @@
     </option>
   </component>
   <component name="RunManager" selected="ScalaTest.Step1_PrimarySpec">
-    <configuration default="false" name="BinaryTreeSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="actorbintree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="scalaCoverage" />
-      <module name="progfun-actorbintree" />
-      <setting name="path" value="actorbintree.BinaryTreeSuite" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Step1_PrimarySpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+    <configuration default="false" name="Step1_PrimarySpec.case4 (flaky): Primary (in isolation) should react properly to Insert, Remove, Get" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="kvstore.*" />
@@ -580,8 +672,8 @@
       <setting name="params" value="" />
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
+      <setting name="testName" value="case4 (flaky): Primary (in isolation) should react properly to Insert, Remove, Get" />
+      <setting name="testKind" value="Test name" />
       <setting name="showProgressMessages" value="true" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -609,7 +701,7 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Step3_ReplicatorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+    <configuration default="false" name="Step5_PrimaryPersistenceSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="kvstore.*" />
@@ -618,7 +710,7 @@
       </extension>
       <extension name="scalaCoverage" />
       <module name="progfun-kvstore" />
-      <setting name="path" value="kvstore.Step3_ReplicatorSpec" />
+      <setting name="path" value="kvstore.Step5_PrimaryPersistenceSpec" />
       <setting name="package" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
@@ -631,7 +723,7 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Step4_SecondaryPersistenceSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+    <configuration default="false" name="Step6_NewSecondarySpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="kvstore.*" />
@@ -640,7 +732,29 @@
       </extension>
       <extension name="scalaCoverage" />
       <module name="progfun-kvstore" />
-      <setting name="path" value="kvstore.Step4_SecondaryPersistenceSpec" />
+      <setting name="path" value="kvstore.Step6_NewSecondarySpec" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Step1_PrimarySpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="kvstore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="scalaCoverage" />
+      <module name="progfun-kvstore" />
+      <setting name="path" value="kvstore.Step1_PrimarySpec" />
       <setting name="package" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
@@ -726,19 +840,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite" />
-      <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
-      <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
-      <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step3_ReplicatorSpec" />
-      <item index="4" class="java.lang.String" itemvalue="ScalaTest.Step4_SecondaryPersistenceSpec" />
+      <item index="0" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec.case4 (flaky): Primary (in isolation) should react properly to Insert, Remove, Get" />
+      <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
+      <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step5_PrimaryPersistenceSpec" />
+      <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step6_NewSecondarySpec" />
+      <item index="4" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec" />
-        <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step4_SecondaryPersistenceSpec" />
-        <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step3_ReplicatorSpec" />
+        <item index="1" class="java.lang.String" itemvalue="ScalaTest.Step6_NewSecondarySpec" />
+        <item index="2" class="java.lang.String" itemvalue="ScalaTest.Step5_PrimaryPersistenceSpec" />
         <item index="3" class="java.lang.String" itemvalue="ScalaTest.Step2_SecondarySpec" />
-        <item index="4" class="java.lang.String" itemvalue="ScalaTest.BinaryTreeSuite" />
+        <item index="4" class="java.lang.String" itemvalue="ScalaTest.Step1_PrimarySpec.case4 (flaky): Primary (in isolation) should react properly to Insert, Remove, Get" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -799,42 +913,47 @@
       <created>1387370800527</created>
       <updated>1387370800527</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Working on Step 4">
+      <created>1387386298659</created>
+      <updated>1387386298659</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="866" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24418604" sideWeight="0.66446644" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33553356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31683168" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20792079" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18298654" sideWeight="0.63146317" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36853686" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -880,7 +999,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Step 1 and Step 2 complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on Step 4" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -899,6 +1018,7 @@
     <MESSAGE value="Draft of bintree" />
     <MESSAGE value="Addition of kvstore" />
     <MESSAGE value="Step 1 and Step 2 complete" />
+    <MESSAGE value="Working on Step 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -908,58 +1028,21 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/suggestions/src/main/scala/suggestions/gui/WikipediaApi.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="23" selection-start="2092" selection-end="2092" vertical-scroll-proportion="0.058757063" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/suggestions/src/test/scala/suggestions/WikipediaApiTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="19" selection-start="2616" selection-end="2616" vertical-scroll-proportion="0.7118644" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actorbintree/src/resources/application.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="19" selection-start="54" selection-end="54" vertical-scroll-proportion="0.06882591" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/actorbintree/lib_managed/jars/com.typesafe.akka/akka-actor_2.10/akka-actor_2.10-2.2.3.jar!/akka/actor/package.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/actorbintree/lib_managed/jars/com.typesafe.akka/akka-actor_2.10/akka-actor_2.10-2.2.3.jar!/akka/actor/RepointableActorRef.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/actorbintree/lib_managed/bundles/com.typesafe.akka/akka-testkit_2.10/akka-testkit_2.10-2.2.3.jar!/akka/testkit/TestKitBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="5568" selection-end="5568" vertical-scroll-proportion="-19.64" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/actorbintree/lib_managed/jars/com.typesafe.akka/akka-actor_2.10/akka-actor_2.10-2.2.3.jar!/akka/actor/Actor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="25" selection-end="25" vertical-scroll-proportion="0.028052805" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actorbintree/src/main/scala/actorbintree/BinaryTreeSet.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="52" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.45073614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actorbintree/src/test/scala/actorbintree/BinaryTreeSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="23" selection-start="4975" selection-end="4975" vertical-scroll-proportion="0.019252548">
+        <state line="150" column="23" selection-start="4975" selection-end="4975" vertical-scroll-proportion="0.019252548" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Tools.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="7" selection-start="368" selection-end="368" vertical-scroll-proportion="0.100294985">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala">
+    <entry file="jar://$PROJECT_DIR$/kvstore/lib_managed/jars/org.scalatest/scalatest_2.10/scalatest_2.10-1.9.1.jar!/org/scalatest/SuperEngine.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="104" selection-start="461" selection-end="461" vertical-scroll-proportion="0.2881356">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -971,40 +1054,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala">
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="31" selection-start="1390" selection-end="1390" vertical-scroll-proportion="0.0">
+        <state line="177" column="102" selection-start="6172" selection-end="6172" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step3_ReplicatorSpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="6" selection-start="424" selection-end="424" vertical-scroll-proportion="0.12592593">
+        <state line="12" column="6" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step2_SecondarySpec.scala">
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step5_PrimaryPersistenceSpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="16" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0">
+        <state line="139" column="100" selection-start="5025" selection-end="5025" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step4_SecondaryPersistenceSpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="84" selection-start="1711" selection-end="1722" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step6_NewSecondarySpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="100" selection-start="4754" selection-end="4754" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistence.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="647" selection-end="647" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replicator.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="36" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
+        <state line="52" column="37" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#530#549#0" expanded="true" />
+            <element signature="e#17#72#0" expanded="true" />
+            <element signature="e#597#616#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Persistor.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="7" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#17#84#0" expanded="true" />
+            <element signature="e#235#255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step7_FlakyPersistenceSpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="15" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#17#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/kvstore/lib_managed/jars/com.typesafe.akka/akka-actor_2.10/akka-actor_2.10-2.2.3.jar!/akka/actor/ActorCell.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="4058" selection-end="4058" vertical-scroll-proportion="-16.48">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kvstore/src/test/scala/kvstore/Step1_PrimarySpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="65" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.33702883">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kvstore/src/main/scala/kvstore/Replica.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="32" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.4982699">
-          <folding />
+        <state line="210" column="85" selection-start="5181" selection-end="5181" vertical-scroll-proportion="0.37956205">
+          <folding>
+            <element signature="e#2066#2082#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

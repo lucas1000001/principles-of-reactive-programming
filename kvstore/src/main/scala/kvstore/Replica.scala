@@ -1,17 +1,12 @@
 package kvstore
 
-import akka.actor.{ OneForOneStrategy, Props, ActorRef, Actor }
+import akka.actor.{ Props, ActorRef, Actor }
 import kvstore.Arbiter._
-import scala.collection.immutable.Queue
-import akka.actor.SupervisorStrategy.Restart
-import scala.annotation.tailrec
-import akka.pattern.{ ask, pipe }
-import akka.actor.Terminated
-import scala.concurrent.duration._
 import akka.actor.PoisonPill
-import akka.actor.OneForOneStrategy
-import akka.actor.SupervisorStrategy
-import akka.util.Timeout
+import kvstore.Replica.{Await, GetResult}
+import kvstore.Persistence.{PersistenceTimeout, Persisted, Persist}
+import scala.concurrent.duration._
+
 
 object Replica {
   sealed trait Operation {
@@ -27,55 +22,110 @@ object Replica {
   case class OperationFailed(id: Long) extends OperationReply
   case class GetResult(key: String, valueOption: Option[String], id: Long) extends OperationReply
 
+  case class Await(key:String, source:ActorRef, count:Int)
+
   def props(arbiter: ActorRef, persistenceProps: Props): Props = Props(new Replica(arbiter, persistenceProps))
 }
 
-class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
+
+
+
+trait Secondary extends Actor {
+
   import Replica._
   import Replicator._
   import Persistence._
-  import context.dispatcher
 
-  /*
-   * The contents of this actor is just a suggestion, you can implement it in any way you like.
-   */
+  var kv:Map[String, String]
 
-  arbiter ! Join
+  var awaiting:Map[Long, Await]
 
-  var kv = Map.empty[String, String]
-  // a map from secondary replicas to replicators
-  var secondaries = Map.empty[ActorRef, ActorRef]
-  // the current set of replicators
-  var replicators = Set.empty[ActorRef]
-  // id of request to actor who made request
-  var senders = Map.empty[Long, ActorRef]
+  def get(key:String, id:Long)
+
+  var persistor:ActorRef
 
   var expectedSeq = 0
 
-  def receive = {
-    case JoinedPrimary   => context.become(leader)
-    case JoinedSecondary => context.become(replica)
+  def snapshot(sn:Snapshot) {
+
+    val Snapshot(key, valueOption, seq) = sn
+
+    def save {
+      valueOption match {
+        case Some(v) => kv = kv + (key -> v)
+        case None => kv = kv - key
+      }
+      expectedSeq += 1
+    }
+
+    def persist {
+      awaiting = awaiting + (seq -> Await(key, sender, 1))
+      persistor ! Persist(key, valueOption, seq)
+    }
+
+    if (seq < expectedSeq) {
+      sender ! SnapshotAck(key, seq)
+    }
+    if (seq == expectedSeq) {
+      save
+      persist
+    }
   }
 
-  def get(key:String, id:Long) {
-    val valueOption = kv.get(key)
-    sender ! GetResult(key, valueOption, id)
+  /* TODO Behavior for the replica role. */
+  val replica: Receive = {
+    case Get(key, id) => get(key, id)
+    case sn:Snapshot => snapshot(sn)
+    case Persisted(_, id) => {
+      val Await(key, respondTo, _) = awaiting(id)
+      respondTo ! SnapshotAck(key, id)
+      awaiting = awaiting - id
+    }
   }
-  
+
+}
+
+
+
+trait Primary extends Actor {
+
+  import Replica._
+  import Replicator._
+
+  var kv:Map[String, String]
+
+  // a map from secondary replicas to replicators
+  var secondaries = Map.empty[ActorRef, ActorRef]
+
+  // the current set of replicators
+  var replicators = Set.empty[ActorRef]
+
+  var awaiting:Map[Long, Await]
+
+  var persistor:ActorRef
+
+  def get(key:String, id:Long)
+
+  def replicate(replicator:ActorRef, rep:Replicate) {
+    replicator ! rep
+  }
+
+  private def submit(key:String, value:Option[String], id:Long) {
+    awaiting = awaiting + (id -> Await(key, sender, 1 + replicators.size))
+    persistor ! Persist(key, value, id)
+    replicators.foreach { replicator =>
+      replicate(replicator, Replicate(key, value, id))
+    }
+  }
+
   def insert(key:String, value:String, id:Long) {
     kv = kv + (key -> value)
-    sender ! OperationAck(id)
-    replicators.foreach { replicator =>
-      replicator ! Replicate(key, Some(value), id)
-    }
+    submit(key, Some(value), id)
   }
-  
+
   def remove(key:String, id:Long) {
     kv = kv - key
-    sender ! OperationAck(id)
-    replicators.foreach { replicator =>
-      replicator ! Replicate(key, None, id)
-    }
+    submit(key, None, id)
   }
 
   def allocateReplicas(replicas:Set[ActorRef]) {
@@ -84,11 +134,11 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
     val toRemove = (knownReplicas - self) &~ replicas
 
     toAdd.foreach { replica =>
-      val replicator = context.actorOf(Replicator.props(replica), s"$replica-replicator")
+      val replicator = context.actorOf(Replicator.props(replica))
       replicators = replicators + replicator
       secondaries = secondaries + (replica -> replicator)
       kv.zip(Stream.from(0)).foreach { case ((k, v), id) =>
-        replicator ! Replicate(k, Some(v), id * -1)
+        replicate(replicator, Replicate(k, Some(v), id * -1))
       }
     }
 
@@ -99,43 +149,82 @@ class Replica(val arbiter: ActorRef, persistenceProps: Props) extends Actor {
       replicators = replicators - replica
     }
   }
+  
+  def countDown(id:Long) {
 
-  def persist(seq:Long) {
-    senders = senders + (seq -> sender)
-  }
-
-  def snapshot(sn:Snapshot) {
-    val Snapshot(key, valueOption, seq) = sn
-    if (seq < expectedSeq) {
-      sender ! SnapshotAck(key, seq)
-    }
-    if (seq == expectedSeq) {
-      valueOption match {
-        case Some(v) => kv = kv + (key -> v)
-        case None => kv = kv - key
+    def doCountDown {
+      val Await(key, replyTo, count) = awaiting(id)
+      if (count <= 1) {
+        awaiting = awaiting - id
+        replyTo ! OperationAck(id)
+      } else {
+        awaiting = awaiting + (id -> Await(key, replyTo, count - 1))
       }
-      expectedSeq += 1
-      persist(seq)
+    }
+
+    if (awaiting.contains(id)) {
+      doCountDown
     }
   }
 
-  /* TODO Behavior for  the leader role. */
+  def failed(id:Long) {
+
+    def activeReplica(replica:ActorRef) ={
+      (replicators + persistor).contains(replica)
+    }
+
+    val Await(_, replyTo, _) = awaiting(id)
+    awaiting = awaiting - id
+
+    if (activeReplica(sender)) {
+      replyTo ! OperationFailed(id)
+    } else {
+      replyTo ! OperationAck(id)
+    }
+
+  }
+
+  /* TODO Behavior for the leader role. */
   val leader: Receive = {
     case Get(key, id) => get(key, id)
     case Insert(key, value, id) => insert(key, value, id)
     case Remove(key, id) => remove(key, id)
     case Replicas(actors) => allocateReplicas(actors)
+    case Replicated(_, id) => countDown(id)
+    case Persisted(_, id) => countDown(id)
+    case PersistenceTimeout(id) => failed(id)
+    case ReplicationFailed(id) => failed(id)
   }
 
-  /* TODO Behavior for the replica role. */
-  val replica: Receive = {
-    case Get(key, id) => get(key, id)
-    case sn:Snapshot => snapshot(sn)
-    case Persisted(key, id) => {
-      senders(id) ! SnapshotAck(key, id)
-      senders = senders - id
-    }
+}
 
+
+
+class Replica(val arbiter: ActorRef, val persistenceProps: Props) extends Actor with Primary
+                                                                                with Secondary {
+
+  /*
+   * The contents of this actor is just a suggestion, you can implement it in any way you like.
+   */
+
+  arbiter ! Join
+
+  var kv = Map.empty[String, String]
+
+  def receive = {
+    case JoinedPrimary => context.become(leader)
+    case JoinedSecondary => context.become(replica)
   }
+
+  def get(key:String, id:Long) {
+    val valueOption = kv.get(key)
+    sender ! GetResult(key, valueOption, id)
+  }
+
+  val persistence = context.actorOf(persistenceProps)
+
+  var persistor = context.actorOf(Props(classOf[Persistor], persistence))
+
+  var awaiting = Map.empty[Long, Await]
 
 }

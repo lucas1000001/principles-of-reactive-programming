@@ -117,4 +117,42 @@ class Step5_PrimaryPersistenceSpec extends TestKit(ActorSystem("Step5PrimaryPers
     client.waitAck(setId)
   }
 
+  test("case6 (flaky): Primary generates failure after 1 second if global acknowledgement fails") {
+    val arbiter = TestProbe()
+    val persistence = TestProbe()
+    val primary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case6-primary")
+    val secondary = TestProbe()
+    val client = session(primary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(primary, JoinedPrimary)
+    arbiter.send(primary, Replicas(Set(primary, secondary.ref)))
+
+    val setId = client.set("foo", "bar")
+    secondary.expectMsgType[Snapshot]
+    client.nothingHappens(800.milliseconds) // SHould not fail too early
+    client.waitFailed(setId)
+  }
+
+  test("case7 (flaky): Primary acknowledges only after persistence and global acknowledgement") {
+    val arbiter = TestProbe()
+    val persistence = TestProbe()
+    val primary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case7-primary")
+    val secondaryA, secondaryB = TestProbe()
+    val client = session(primary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(primary, JoinedPrimary)
+    arbiter.send(primary, Replicas(Set(primary, secondaryA.ref, secondaryB.ref)))
+
+    val setId = client.set("foo", "bar")
+    val seqA = secondaryA.expectMsgType[Snapshot].seq
+    val seqB = secondaryB.expectMsgType[Snapshot].seq
+    client.nothingHappens(300.milliseconds)
+    secondaryA.reply(SnapshotAck("foo", seqA))
+    client.nothingHappens(300.milliseconds)
+    secondaryB.reply(SnapshotAck("foo", seqB))
+    client.waitAck(setId)
+  }
+
 }

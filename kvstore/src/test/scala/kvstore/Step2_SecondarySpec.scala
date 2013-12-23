@@ -107,4 +107,89 @@ class Step2_SecondarySpec extends TestKit(ActorSystem("Step2SecondarySpec"))
     client.get("k1") should be === Some("v2")
   }
 
+  test("case5 (flaky): Secondary (in isolation) should properly register itself to the provided Arbiter") {
+    val arbiter = TestProbe()
+    val secondary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case5-secondary")
+
+    arbiter.expectMsg(Join)
+  }
+
+  test("case6 (flaky): Secondary (in isolation) must handle Snapshots") {
+    import Replicator._
+
+    val arbiter = TestProbe()
+    val replicator = TestProbe()
+    val secondary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case6-secondary")
+    val client = session(secondary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(secondary, JoinedSecondary)
+
+    client.get("k1") should be === None
+
+    replicator.send(secondary, Snapshot("k1", None, 0L))
+    replicator.expectMsg(SnapshotAck("k1", 0L))
+    client.get("k1") should be === None
+
+    replicator.send(secondary, Snapshot("k1", Some("v1"), 1L))
+    replicator.expectMsg(SnapshotAck("k1", 1L))
+    client.get("k1") should be === Some("v1")
+
+    replicator.send(secondary, Snapshot("k1", None, 2L))
+    replicator.expectMsg(SnapshotAck("k1", 2L))
+    client.get("k1") should be === None
+  }
+
+  test("case7 (flaky): Secondary should drop and immediately ack snapshots with older sequence numbers") {
+    import Replicator._
+
+    val arbiter = TestProbe()
+    val replicator = TestProbe()
+    val secondary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case7-secondary")
+    val client = session(secondary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(secondary, JoinedSecondary)
+
+    client.get("k1") should be === None
+
+    replicator.send(secondary, Snapshot("k1", Some("v1"), 0L))
+    replicator.expectMsg(SnapshotAck("k1", 0L))
+    client.get("k1") should be === Some("v1")
+
+    replicator.send(secondary, Snapshot("k1", None, 0L))
+    replicator.expectMsg(SnapshotAck("k1", 0L))
+    client.get("k1") should be === Some("v1")
+
+    replicator.send(secondary, Snapshot("k1", Some("v2"), 1L))
+    replicator.expectMsg(SnapshotAck("k1", 1L))
+    client.get("k1") should be === Some("v2")
+
+    replicator.send(secondary, Snapshot("k1", None, 0L))
+    replicator.expectMsg(SnapshotAck("k1", 0L))
+    client.get("k1") should be === Some("v2")
+  }
+
+  test("case8 (flaky): Secondary should drop snapshots with future sequence numbers") {
+    import Replicator._
+
+    val arbiter = TestProbe()
+    val replicator = TestProbe()
+    val secondary = system.actorOf(Replica.props(arbiter.ref, Persistence.props(flaky = true)), "case8-secondary")
+    val client = session(secondary)
+
+    arbiter.expectMsg(Join)
+    arbiter.send(secondary, JoinedSecondary)
+
+    client.get("k1") should be === None
+
+    replicator.send(secondary, Snapshot("k1", Some("v1"), 1L))
+    replicator.expectNoMsg(300.milliseconds)
+    client.get("k1") should be === None
+
+    replicator.send(secondary, Snapshot("k1", Some("v2"), 0L))
+    replicator.expectMsg(SnapshotAck("k1", 0L))
+    client.get("k1") should be === Some("v2")
+  }
+
 }

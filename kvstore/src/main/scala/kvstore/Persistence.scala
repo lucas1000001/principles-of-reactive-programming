@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger
 object Persistence {
   case class Persist(key: String, valueOption: Option[String], id: Long)
   case class Persisted(key: String, id: Long)
+  case class PersistenceTimeout(id:Long)
 
   class PersistenceException extends Exception("Persistence failure")
 
